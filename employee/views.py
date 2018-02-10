@@ -11,6 +11,7 @@ from call.models import Call
 
 
 class GetEmployeeList(APIView):
+	''' Get list of all employees '''
 
 	def get(self, request):		
 
@@ -23,6 +24,7 @@ class GetEmployeeList(APIView):
 
 
 class GetEmployee(APIView):
+	''' Get details of an employee.'''
 
 	def get(self, request):		
 
@@ -55,3 +57,4 @@ class GetScore(APIView):
 
 	def post(self, request):
 		pass
+

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'call.apps.CallConfig',
     'employee.apps.EmployeeConfig',
+    'stats.apps.StatsConfig',
 
     'rest_framework'
 ]
