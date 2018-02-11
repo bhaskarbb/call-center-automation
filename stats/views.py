@@ -52,18 +52,18 @@ class GetTopEmployees(APIView):
 
 
 class GetScore(APIView):
-	
+
 	def get(self, request):		
 
 		scope = request.query_params.get('scope')
 		scores = Call.objects.all()
 
 		if scope == 'today':
-			scores = scroes.filter(timestamp__date=date.today())
+			scores = scores.filter(timestamp__date=date.today())
 		elif scope == 'month':
-			scores = scroes.filter(timestamp__month=date.today().month)
+			scores = scores.filter(timestamp__month=date.today().month)
 		elif scope == 'year':
-			scores = scroes.filter(timestamp__year=date.today().year)
+			scores = scores.filter(timestamp__year=date.today().year)
 
 		score_serializer = ScoreSerializer(scores, many=True)
 		return Response(score_serializer.data)
