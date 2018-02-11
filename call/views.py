@@ -34,8 +34,6 @@ def upload_call(request):
 	audio_path = 'media/audio.mp3'
 	employee_id = 1
 
-	logger.info('upload_call')
-
 	response = speech_to_text(audio_path)
 	employee_text, caller_text, transcript = seperate_speakers(response)
 
