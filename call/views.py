@@ -31,7 +31,7 @@ class GetCall(APIView):
 # Create your views here.
 
 def upload_call(request):
-	audio_path = 'media/audio.mp3'
+	audio_path = 'media/11 Feb, 09.58.mp3'
 	employee_id = 1
 
 	response = speech_to_text(audio_path)
