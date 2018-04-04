@@ -39,7 +39,7 @@ python manage.py runserver
 
 
 
-### Build With
+### Built With
 1. Django (Django-rest-framework)
 1. Jquery + Chart.js
 1. DialogFlow
