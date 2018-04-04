@@ -6,7 +6,7 @@ app_name = 'call'
 
 urlpatterns = [
     path('detail/', views.GetCall.as_view()),
-    path('upload/', views.upload_call),
+   	path('upload/', views.UploadCall.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

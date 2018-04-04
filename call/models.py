@@ -14,7 +14,7 @@ class Call(models.Model):
 	timestamp = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return '{} - {}'.format(self.employee, self.timestamp)
+		return '{} - {}'.format(self.id, self.employee)
 
 
 class Transcript(models.Model):

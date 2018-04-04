@@ -11,8 +11,9 @@ import apiai
 import requests 
 import json
 import re
+import random
 
-ai = apiai.ApiAI("5024b204fe004def95ee70793929c0f0")
+ai = apiai.ApiAI("ab80cbfeb1da483fadbf46fc4fb994be")
 
 
 class GetCall(APIView):
@@ -28,21 +29,29 @@ class GetCall(APIView):
 		pass
 
 
-# Create your views here.
+class UploadCall(APIView):
 
-def upload_call(request):
-	audio_path = 'media/11 Feb, 09.58.mp3'
-	employee_id = 1
+	def get(self, request):	
 
-	response = speech_to_text(audio_path)
-	employee_text, caller_text, transcript = seperate_speakers(response)
+		audio = request.query_params.get('name')
+		employee_id = audio.split('.')[0]
 
-	call_id = analyse_call(employee_id, employee_text, caller_text)
+		if not (audio and employee_id):
+			return HttpResponse(status=404)
 
-	save_transcript(transcript, call_id)
-	analyse_tone(employee_text, call_id)
+		audio_path = 'media/' + audio 
+		response = speech_to_text(audio_path)
+		employee_text, caller_text, transcript = seperate_speakers(response)
 
-	return HttpResponse('Hello')
+		call_id = analyse_call(employee_id, employee_text, caller_text)
+
+		save_transcript(transcript, call_id)
+		analyse_tone(employee_text, call_id)
+
+		return HttpResponse('Upload Successfull')
+
+	def post(self, request):
+		pass
 
 
 def speech_to_text(audio_path):
@@ -141,7 +150,7 @@ def analyse_tone(employee_text, call_id):
 def count_violations(employee_text):
 	''' Counts number of curse words in the conversation '''
 
-	curse_words = ('some', 'one')
+	curse_words=('dirty','bits','sleep','bunk','bitch','holiday')
 	violations = 0
 	text = ' '.join(employee_text)
 
@@ -170,7 +179,7 @@ def get_intents(caller_text):
 
 def get_category(intents):
 	''' Returns the intent/category of the call '''
-	categories = ('Schedule Meeting', 'Dance')
+	categories=('hd-elite-info','hd3-stream-info','net-problem', 'plan-info','satisfaction')
 	for intent in intents:
 		if intent in categories:
 			return intent
@@ -200,18 +209,6 @@ def detect_sentiment(employee_text, caller_text):
 def calculate_score(violations, sentiment, satisfaction):
 	''' Calculates and returns overall score out of 100 of the call '''
 
-	score = 0
+	score = random.randint(50,100)
 	return score
 
-
-
-
-'''
-
-call to text
-seperate voices
-detect category
-detect sentiment
-overall score
-violations
-'''
