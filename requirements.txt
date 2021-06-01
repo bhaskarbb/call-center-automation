@@ -17,5 +17,5 @@ pytz==2018.3
 requests==2.18.4
 six==1.11.0
 textblob==0.15.1
-urllib3==1.22
+urllib3==1.26.5
 watson-developer-cloud==1.0.2
